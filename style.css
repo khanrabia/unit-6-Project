@@ -1,0 +1,19 @@
+*{
+    text-align: center;
+}
+
+body{
+    background-color: black;
+    color: white;
+}
+h1{
+    margin-bottom: 70px;
+}
+
+input{
+    margin-bottom: 30px;
+}
+
+select{
+    margin-bottom: 30px;
+}

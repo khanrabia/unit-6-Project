@@ -4,13 +4,56 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="secret.js"></script>
+    <link rel="stylesheet" href="style.css" />
+    <!-- <script src="secret.js"></script> -->
     <script src="index1.js"></script>
     <title>Weather your Hunger</title>
 </head>
 <body>
-   <div>
-       
+   <div id = "container">
+       <form id ="search-form">
+           <h1>Search Recipes</h1>
+           <p>Search Recipes</p>
+            <input type="text" placeholder="recipes" id = "recipes">
+            <br>
+            <p>Search Deserts</p>
+            <input type="text" placeholder="desert "  id = "desert">
+            <br>
+            
+
+            <p> Search by diet preferences:</p>
+            <select name="diet" id="diet-options">
+                <option value="Vegetarian">Vegetarian</option>
+                <option value="Lacto-Vegetarian">Lacto-Vegetarian</option>
+                <option value="Ovo-Vegetarian">Ovo-Vegetarian</option>
+                <option value="Pescatarian">Pescatarian</option>
+                <option value="Vegan">Vegan</option>
+                <option value="Gluten Free">Gluten Free</option>
+                <option value="Paleo">Paleo</option>
+                <option value="Primal">Primal</option>
+                <option value="Ketogenic">Ketogenic</option>
+                <option value="Whole30">Whole30</option>
+              </select>
+              <br>
+            <input type="submit" value="find recipes">
+
+       </form>
+   </div>
+   <div id= "recipe-list" style="display: none">
+        <h2 id="recipe-title" >This works</h2> 
+        <ul id = "list"></ul>
+   </div>
+   <div id= "single-recipe" style="display: none">
+    <h3 id="single-recipe-title" >This </h2> 
+        <img id="img">
+        <!-- // cusine, link , sourceName, source url, serving size, prep time, summary
+        //button links to webpage for recipe -->
+        <p id="">Cusine: </p>
+        <p id="">Cusine: </p>
+        <p id="">Cusine: </p>
+        <p id="">Cusine: </p>
+        <p id="">Cusine: </p>
+
    </div>
 </body>
 </html>
