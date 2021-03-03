@@ -1,3 +1,5 @@
+let spoonToken = key.apiKey
+
 document.addEventListener("DOMContentLoaded", fetchThis)
 
 
@@ -10,7 +12,7 @@ function fetchThis() {
             'Content-Type': 'application/json'
         },
     }
-    fetch("https://api.spoonacular.com/recipes/716429/information?apiKey=536b11be4f9943aeb2d776558441cf0e", options)
+    fetch(`https://api.spoonacular.com/recipes/716429/information?apiKey=${spoonToken}`, options)
 .then(res => res.json())
 .then(data => {
     console.log(data) 
