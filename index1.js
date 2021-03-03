@@ -1,4 +1,4 @@
-
+let spoonToken = "null"
 
 document.addEventListener("DOMContentLoaded", () => {
     let form = document.getElementById("search-form");
@@ -18,7 +18,7 @@ function callBack(e){
             'Content-Type': 'application/json'
         },
     }
-    fetch(`https://api.spoonacular.com/recipes/complexSearch?query=${recipes}&tags=${diet}&apiKey=${spoonToken}&addRecipeInformation=true`, options)
+    fetch(`https://api.spoonacular.com/recipes/complexSearch?query=${recipes}&tags=${diet}&addRecipeNutrition=true&apiKey=${spoonToken}&addRecipeInformation=true`, options)
     .then(res => res.json())
     .then(data => {
         displayRecipe(data);
@@ -49,23 +49,28 @@ function displayRecipe(data){
             // let singleRecipe = li.innerText;
             let recipeList = document.getElementById("recipe-list");
             recipeList.style.display = "none";
-            
+            let singleRecipeTitle = document.getElementById("single-recipe-title");
+            singleRecipeTitle.innerText = li.innerText.toUpperCase()
             let singleRecipe = document.getElementById("single-recipe");
             singleRecipe.style.display = "block";
-            let img = document.getElementById("img")
+            let img = document.getElementById("img");
             img.src = recipe.image;
 
+            let cusine = document. getElementById("cusine");
+            let sourceName = document. getElementById("sourceName");
+            let  prepTime= document. getElementById("prep-time");
+            let servingSize = document. getElementById("serving-size");
+            let nutrition = document. getElementById("Nutrition");
 
-            data.results.forEach(ingreident => {
-                let ingredientsUl = document.getElementById("ingredients");
-                let ingreidentList = document.createElement("li");
-                // ingreidentList.innerText = recipe.ingredients;
-                // console.log(ingreidentList)
-                ingreidentList.innerText = ingreident.analyzedInstructions[0].steps[0].ingredients[0].localizedName
-                ingredientsUl.append(ingreidentList);
+            cusine.innerText = `Cusine: ${recipe.cuisines[0]}`;
+            // nutrition.innerHTML = `nutrition: ${recipe.summary}`;
+            prepTime.innerText = `Prep-Time: ${recipe.readyInMinutes}`;
+            servingSize.innerText = `Serving size: ${recipe.servings}`;
+            sourceName.innerText = `Source: ${recipe.sourceName}`;
+
+
+
            
-                
-            })
         });
     });
       
