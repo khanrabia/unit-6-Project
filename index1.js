@@ -1,4 +1,4 @@
-let spoonToken = "null"
+let spoonToken = ""
 
 document.addEventListener("DOMContentLoaded", () => {
     let form = document.getElementById("search-form");
@@ -56,21 +56,47 @@ function displayRecipe(data){
             let img = document.getElementById("img");
             img.src = recipe.image;
 
+            // extra information
             let cusine = document. getElementById("cusine");
             let sourceName = document. getElementById("sourceName");
             let  prepTime= document. getElementById("prep-time");
             let servingSize = document. getElementById("serving-size");
-            let nutrition = document. getElementById("Nutrition");
+            let weightPerServing = document. getElementById("weightPerServing");
+
+            
 
             cusine.innerText = `Cusine: ${recipe.cuisines[0]}`;
-            // nutrition.innerHTML = `nutrition: ${recipe.summary}`;
             prepTime.innerText = `Prep-Time: ${recipe.readyInMinutes}`;
             servingSize.innerText = `Serving size: ${recipe.servings}`;
             sourceName.innerText = `Source: ${recipe.sourceName}`;
+            weightPerServing.innerText = `Weight per serving: ${recipe.nutrition.weightPerServing.amount} ${recipe.nutrition.weightPerServing.unit} `;
 
 
+            // nutritions facts for reciepe
+            let nutritionSection = document.getElementById("nutrition-section")
+            let nutrition = document. getElementById("Nutrition");
+            // nutrition.innerHTML = `nutrition: ${recipe.summary}`;
+            nutritionSection.style.display = "block";
 
-           
+            let carbs = document.getElementById("carbs");
+            let fat = document.getElementById("fat");
+            let protein = document.getElementById("protein");
+
+            carbs.innerText = `Carbs: ${recipe.nutrition.caloricBreakdown.percentCarbs}`
+            fat.innerText = `Fat: ${recipe.nutrition.caloricBreakdown.percentFat}`;
+            protein.innerText = `Protein: ${recipe.nutrition.caloricBreakdown.percentProtein}`;
+            
+
+            //Ingredients of the recipe
+
+            let ingredients = document.getElementById("ingreidents")
+            let ulOfIngredients = document.getElementById("list-of-ingredients")
+
+            // Steps of recipe
+            let steps = document.getElementById("steps")
+            let ulOfSteps = document.getElementById("list-of-steps")
+
+
         });
     });
       
