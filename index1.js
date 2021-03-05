@@ -6,9 +6,42 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let moreResults = document.getElementById("more-results");
     moreResults.addEventListener("click", similarRecipes);
+
+    let randomRecipe  = document.getElementById("random-recipes");
+    randomRecipes()
     
     
 })
+
+// fetches the random recipes on the main page
+function randomRecipes (){
+    fetch(`https://api.spoonacular.com/recipes/random?apiKey=${spoonToken}&number=6`)
+    .then(response => {
+        return response.json();
+    })
+    .then(data => {
+        displayRandomRecipe(data)
+    })
+}
+
+//Displays the random recipes on the main page
+function displayRandomRecipe(data){
+
+    data.recipes.forEach(recipe =>{
+        let randomRecipe  = document.getElementById("random-recipes");
+        let randomImg = document.createElement('a');
+        randomImg.target="_blank"
+        randomImg.href = recipe.sourceUrl;
+        randomImg.innerHTML = `<img  src = ${recipe.image}></img>`;
+        
+        let randomTitle = document.createElement("h6");
+        randomTitle.innerText = recipe.title;
+        let randomSummary = document.createElement("p")
+        randomSummary.innerHTML = recipe.summary;
+
+        randomRecipe.append(randomTitle,randomImg,randomSummary);
+    })
+}
 
 // fetches the recipe that user puts in the input box
 function callBack(e){
@@ -22,10 +55,10 @@ function callBack(e){
             'Content-Type': 'application/json'
         }
     }
-    fetch(`https://api.spoonacular.com/recipes/complexSearch?query=${recipes}&tags=${diet}&addRecipeNutrition=true&apiKey=${spoonToken}&addRecipeInformation=true&instructionsRequired=true`, options)
+    fetch(`https://api.spoonacular.com/recipes/complexSearch?query=${recipes}&diet=${diet}&addRecipeNutrition=true&apiKey=${spoonToken}&addRecipeInformation=true&instructionsRequired=true&number=10`, options)
     .then(res => res.json())
     .then(data => {
-        console.log(data)
+        
         displayRecipe(data);
     })
 }
@@ -113,7 +146,7 @@ function displaySteps(recipe){
     let secondInstructions = recipe.analyzedInstructions[1];
     steps.style.display = "block";
     id = recipe.id
-    console.log(id)
+
     recipe.analyzedInstructions[0].steps.forEach(step => {
         let li = document.createElement("li");
         li.innerText = step["step"];
@@ -135,7 +168,7 @@ function displaySteps(recipe){
 
 //Get Similar Recipes
 function similarRecipes(){
-    console.log("clicked")
+   
     
     let options = {
         headers: {
@@ -153,7 +186,7 @@ function similarRecipes(){
 }
 
 function displaySimilarRecipe(data){
-    console.log(data)
+    
     let recipeList = document.getElementById("similar-recipes");
     let recipeTitle = document.getElementById("recipe-title");
     let singleRecipe = document.getElementById("single-recipe");
@@ -165,7 +198,7 @@ function displaySimilarRecipe(data){
     // head.innerText = `Here are similaer recipes to ${recipe.title}`
     
     data.forEach(recipe => {
-        console.log(recipe)
+      
         let li = document.createElement("li");
         li.innerHTML = `<a target="_blank" href =${recipe.sourceUrl}>${recipe.title}</a>`;
         ul.append(li);
