@@ -167,7 +167,7 @@ function displaySimilarRecipe(data){
     data.forEach(recipe => {
         console.log(recipe)
         let li = document.createElement("li");
-        li.innerHTML = `<a target="blank" href =${recipe.sourceUrl}>${recipe.title}</a>`;
+        li.innerHTML = `<a target="_blank" href =${recipe.sourceUrl}>${recipe.title}</a>`;
         ul.append(li);
         
     });
