@@ -1,4 +1,4 @@
-let spoonToken = "f71091f82a974cf89c5a67fc45bee0d0";
+let spoonToken = key.recipeKey;
 
 document.addEventListener("DOMContentLoaded", () => {
     let form = document.getElementById("search-form");

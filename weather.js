@@ -1,8 +1,5 @@
-const key = {
-    weatherKey : "0dd243115fab4570a4d3a1bc1685cbb0"
-}
 const api_KEY = key.weatherKey
-alert("This app requires access to your location to provide local weather data. Please enable your location to continue.")
+// alert("This app requires access to your location to provide local weather data. Please enable your location to continue.")
 // document.querySelector(".degree-section").addEventListener("click", checkToggle);
 document.addEventListener("DOMContentLoaded", () => {
     checkIfUserProvidesLocation()
