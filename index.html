@@ -5,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css" />
-    <!-- <script src="secret.js"></script> -->
-    <script src="index1.js"></script>
+    <!-- <script src="index1.js"></script> -->
+    <script src="weather.js"></script>
     <title>Weather your Hunger</title>
 </head>
 <body>
@@ -34,8 +34,20 @@
               </select>
               <br>
             <input type="submit" value="find recipes">
-
        </form>
+       <div id = "weather" >
+        <div class="location">
+			<h1 id= "h1">Finding your location...</h1>
+			<img id="img" />
+		</div>
+		<div class="temperature">
+			<div class="degree-section">
+				<h2 id="h2"></h2>
+				<span id="span"></span>
+			</div>
+			<div id="div"></div>
+		</div>        
+    </div>
        <div id = "random-recipes">
            
        </div>
@@ -44,7 +56,8 @@
         <h2 id="recipe-title" >This works</h2> 
         <ul id = "list"></ul>
    </div>
-   <div id= "single-recipe" style="display: none">
+   <div id = "all-things-of-single-recipe" style="display: none">
+   <div id= "single-recipe" >
     <h3 id="single-recipe-title" >This </h2> 
         <img id="img">
         <!-- // cusine, link , sourceName, source url, serving size, prep time, summary
@@ -57,20 +70,20 @@
         <p id="weightPerServing">Portion Size: </p>
   
 
-   <div id = "nutrition-section" style="display: none">
+   <div id = "nutrition-section">
     <h4 id="Nutrition">Nutrition: </h4>
     <p id="carbs">Carbs: </p>
     <p id="fat">Fat: </p>
     <p id="protein">Protein: </p>
     </div>
 
-    <div id = "ingreidents" style="display: none">
+    <div id = "ingreidents">
         <p>Ingreidents:</p>
         <ul id = "list-of-ingredients"></ul>
 
     </div>
 
-    <div id = "steps" style="display: none">
+    <div id = "steps">
         <p>steps:</p>
         <ul id = "list-of-steps"></ul>
     </div>
@@ -80,11 +93,14 @@
     </div>
 
 </div>
+</div>
+
 <div id = "similar-recipes" style="display: none">
     <h5 id  = "head-of-similar-recipes"></h5>
     <ul id = "similar-list"></ul>
 
 </div>
+
  
 <footer>
     <div>

@@ -1,47 +1,53 @@
-let spoonToken = "";
+let spoonToken = "f71091f82a974cf89c5a67fc45bee0d0";
 
 document.addEventListener("DOMContentLoaded", () => {
     let form = document.getElementById("search-form");
     form.addEventListener("submit", callBack);
 
     let moreResults = document.getElementById("more-results");
-    moreResults.addEventListener("click", similarRecipes);
+    moreResults.addEventListener("click", similarRecipes, {once:true});
 
-    let randomRecipe  = document.getElementById("random-recipes");
-    randomRecipes()
+   
+    // randomRecipes()
+
+    let backToRecipe = document.getElementById("back-to-recipe");
+    backToRecipe.addEventListener("click", backRecipe, {once:true})
     
-    
+    let backToSearch = document.getElementById("back-to-search");
+    backToSearch.addEventListener('click', backSearch)
 })
 
+
+
 // fetches the random recipes on the main page
-function randomRecipes (){
-    fetch(`https://api.spoonacular.com/recipes/random?apiKey=${spoonToken}&number=6`)
-    .then(response => {
-        return response.json();
-    })
-    .then(data => {
-        displayRandomRecipe(data)
-    })
-}
+// function randomRecipes (){
+//     fetch(`https://api.spoonacular.com/recipes/random?apiKey=${spoonToken}&number=6`)
+//     .then(response => {
+//         return response.json();
+//     })
+//     .then(data => {
+//         displayRandomRecipe(data)
+//     })
+// }
 
 //Displays the random recipes on the main page
-function displayRandomRecipe(data){
+// function displayRandomRecipe(data){
 
-    data.recipes.forEach(recipe =>{
-        let randomRecipe  = document.getElementById("random-recipes");
-        let randomImg = document.createElement('a');
-        randomImg.target="_blank"
-        randomImg.href = recipe.sourceUrl;
-        randomImg.innerHTML = `<img  src = ${recipe.image}></img>`;
+//     data.recipes.forEach(recipe =>{
+//         let randomRecipe  = document.getElementById("random-recipes");
+//         let randomImg = document.createElement('a');
+//         randomImg.target="_blank"
+//         randomImg.href = recipe.sourceUrl;
+//         randomImg.innerHTML = `<img  src = ${recipe.image}></img>`;
         
-        let randomTitle = document.createElement("h6");
-        randomTitle.innerText = recipe.title;
-        let randomSummary = document.createElement("p")
-        randomSummary.innerHTML = recipe.summary;
+//         let randomTitle = document.createElement("h6");
+//         randomTitle.innerText = recipe.title;
+//         let randomSummary = document.createElement("p")
+//         randomSummary.innerHTML = recipe.summary;
 
-        randomRecipe.append(randomTitle,randomImg,randomSummary);
-    })
-}
+//         randomRecipe.append(randomTitle,randomImg,randomSummary);
+//     })
+// }
 
 // fetches the recipe that user puts in the input box
 function callBack(e){
@@ -77,14 +83,13 @@ function displayRecipe(data){
         li.innerText = `${recipe.title}`;
         ul.append(li);
         
-        
         //hides the recipe list & displays the recipe instructions, picture & info
         li.addEventListener('click', () =>{
             let recipeList = document.getElementById("recipe-list");
             recipeList.style.display = "none";
             let singleRecipeTitle = document.getElementById("single-recipe-title");
             singleRecipeTitle.innerText = li.innerText.toUpperCase();
-            let singleRecipe = document.getElementById("single-recipe");
+            let singleRecipe = document.getElementById("all-things-of-single-recipe");
             singleRecipe.style.display = "block";
             let img = document.getElementById("img");
             img.src = recipe.image;
@@ -93,8 +98,11 @@ function displayRecipe(data){
             displayNutrientsFacts(recipe);
             displayIngredients(recipe);
             displaySteps(recipe);
+    
         });   
     });
+    let backToSearch = document.getElementById("back-to-search");
+    backToSearch.style.display = "block";
 }
 
 // extra information
@@ -110,11 +118,12 @@ function extraInformation (recipe){
     servingSize.innerText = `Serving size: ${recipe.servings}`;
     sourceName.innerText = `Source: ${recipe.sourceName}`;
     weightPerServing.innerText = `Weight per serving: ${recipe.nutrition.weightPerServing.amount} ${recipe.nutrition.weightPerServing.unit} `;
+
 }
 
 // nutritions facts for recipe
 function displayNutrientsFacts(recipe){
-    let nutritionSection = document.getElementById("nutrition-section");
+    let nutritionSection = document.getElementById("all-things-of-single-recipe");
     let carbs = document.getElementById("carbs");
     let fat = document.getElementById("fat");
     let protein = document.getElementById("protein");
@@ -127,7 +136,7 @@ function displayNutrientsFacts(recipe){
 
 //Ingredients of the recipe
 function displayIngredients(recipe){
-    let ingredients = document.getElementById("ingreidents");
+    let ingredients = document.getElementById("all-things-of-single-recipe");
     let ulOfIngredients = document.getElementById("list-of-ingredients");
     ingredients.style.display = "block";
     
@@ -141,7 +150,7 @@ function displayIngredients(recipe){
 let id;
 // Steps of recipe
 function displaySteps(recipe){
-    let steps = document.getElementById("steps"); // div of steps
+    let steps = document.getElementById("all-things-of-single-recipe"); // div of steps
     let ulOfSteps = document.getElementById("list-of-steps");
     let secondInstructions = recipe.analyzedInstructions[1];
     steps.style.display = "block";
@@ -189,19 +198,58 @@ function displaySimilarRecipe(data){
     
     let recipeList = document.getElementById("similar-recipes");
     let recipeTitle = document.getElementById("recipe-title");
-    let singleRecipe = document.getElementById("single-recipe");
+    let singleRecipe = document.getElementById("all-things-of-single-recipe");
     let ul = document.getElementById("similar-list");
+    let backToRecipe = document.getElementById("back-to-recipe");
     recipeList.style.display = "block";
     singleRecipe.style.display = "none";
-
+    backToRecipe.style.display = "block";
     // let head = document.getElementById("head-of-similar-recipes");
     // head.innerText = `Here are similaer recipes to ${recipe.title}`
     
     data.forEach(recipe => {
       
         let li = document.createElement("li");
-        li.innerHTML = `<a target="_blank" href =${recipe.sourceUrl}>${recipe.title}</a>`;
+        li.innerHTML = `<a target="_blank" href = ${recipe.sourceUrl}>${recipe.title}</a>`;
         ul.append(li);
         
     });
+    let backToSearch = document.getElementById("back-to-search");
+    backToSearch.style.display = "block";
+}
+function backRecipe (data){
+    let backToRecipe = document.getElementById("back-to-recipe");
+    
+    let displayRecipeAgain = document.getElementById("recipe-list");
+    displayRecipeAgain.style.display = "block";
+    let recipeList = document.getElementById("similar-recipes");
+    recipeList.style.display = "none";
+    backToRecipe.style.display = "none";
+    let backToSearch = document.getElementById("back-to-search");
+    backToSearch.style.display = "block";
+
+}
+function backSearch(){
+    let backToSearch = document.getElementById("back-to-search");
+    let container = document.getElementById("container");
+    container.style.display = "block";
+
+    let displayRecipeAgain = document.getElementById("recipe-list");
+    displayRecipeAgain.style.display = "none";
+
+    backToSearch.style.display = "none";
+
+    let allThings = document.getElementById("all-things-of-single-recipe");
+    allThings.style.display = "none";
+
+    let recipeList = document.getElementById("similar-recipes");
+    recipeList.style.display = "none";
+
+    let backToRecipe = document.getElementById("back-to-recipe");
+    backToRecipe.style.display = "none";
+
+
+
+
+
 }
