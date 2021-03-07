@@ -1,0 +1,87 @@
+{
+    "facts": [
+        {
+          "id": 1,
+          "fact": "Bugs could be lurking in your food"
+        
+        },
+        {
+          "id": 2,
+          "fact": " Allspice isn't a mix of other spices."
+        },
+        {
+          "id": 3,
+          "fact": "Nutmeg can cause hallucinations"
+        },
+        {
+          "id": 4,
+          "fact": "Cucumbers are mostly water"
+        },
+        {
+          "id": 5,
+          "fact": "Gelatin isn't vegetarian"
+        },
+        {
+            "id": 6,
+            "fact": "Almonds aren't nuts"
+          },
+          {
+            "id": 7,
+            "fact": "Peanuts are used to make dynamite"
+          },
+          {
+            "id": 8,
+            "fact": "Cranberries will bounce if they're fresh"
+          },
+          {
+            "id": 9,
+            "fact": "Pretzels were once a symbol of love"
+          },
+          {
+            "id": 10,
+            "fact": "Popsicles were invented by a child"
+          },
+          {
+            "id": 11,
+            "fact": "Applesauce was the first food eaten in space"
+          },
+          {
+            "id": 12,
+            "fact": "Cotton candy was created by a dentist"
+          },
+          {
+            "id": 13,
+            "fact": "White chocolate isn't real chocolate"
+          },
+          {
+            "id": 14,
+            "fact": "The Yubari King cantaloupe is the most expensive fruit in the entire world as much as $27,295."
+          },
+          {
+            "id": 15,
+            "fact": "Seaweed is used to make dairy products"
+          },
+          {
+            "id": 16,
+            "fact": "Figs are made by wasps"
+          },
+          {
+            "id": 17,
+            "fact": "Canned white tuna has a high mercury content"
+          },
+          {
+            "id": 18,
+            "fact": "Green beans have tiny hairs on them that can trap bugs."
+          },
+          {
+            "id": 19,
+            "fact": "Rhubarb isn't toxic, but its leaves are. They contain oxalic acid, which can lead to stomach and kidney issues."
+          },
+          {
+            "id": 20,
+            "fact": "Parsley will get rid of onion breath"
+          }
+          
+      ]
+    
+}

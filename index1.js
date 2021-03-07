@@ -170,7 +170,7 @@ function displaySteps(recipe){
             ulOfSteps.append(li);
         });
         
-    }
+    }d
     
     
 }
