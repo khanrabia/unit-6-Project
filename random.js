@@ -28,7 +28,7 @@ function displayFacts(data){
             
 
         }
-    }, 10000);
+    }, 5000);
     
     
 }
