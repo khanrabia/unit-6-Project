@@ -1,54 +1,35 @@
-
-
-/* *{
-    text-align: center;
-}
-
 body{
-    background-color: black;
-    color:white;
-}
-h1{
-    margin-bottom: 70px;
+    display:flex;
+    align-items: center;
 }
 
-input{
-    margin-bottom: 30px;
-}
-
-select{
-    margin-bottom: 30px;
-}
-.icon {
-	height: 20px;
-	width: 20px; */
-/* } */
 #logo{
-    padding-top: 100px;
-    
+    padding-top: 10px;
 }
 
 #recipes{
-    width: 400px
+    width: 400px;
 }
 
 #container{
-    text-align:center ;
+    flex-direction: column;
+    text-align:center;
     font-size: 25px;
     background-color: #c7f9cc;
+    width: 1350px;
 }
+
 #search-label{
     padding-top: 30px;
-    /* padding-bottom: 8000%;  */
 }
 
 #dropdown-label{
-
     margin-left: -2px;
-    padding-top: 300px; 
+    padding-top: 300px;
 }
+
 #diet-options{
-    width: 389px; 
+    width: 389px;
 }
 
 #button{
@@ -68,44 +49,41 @@ select{
 #weather {
     display: flex;
     justify-content: space-around;
-    margin-right: 550px;
-    padding-top: 40px
+    margin-right: 480px;
+    padding-top: 40px;
 }
 
 h1{
-    margin-left:500px
+    margin-left:500px;
 }
 
 img{
     height: 50px;
-	width: 50px; 
+    width: 50px;
 }
 
 #food-by-weather{
     display: grid;
-    grid-template-columns: 300px 300px 300px 300px 200px;
-  grid-template-rows: auto;
-  background-color: white;
-  padding-top: 60px;
-  background-color: #efffcf;
-  
+    grid-template-columns: 300px 300px 300px 300px;
+    grid-template-rows: auto;
+    background-color: white;
+    padding-top: 60px;
+    background-color: #efffcf;
 }
 
 #recommendImg {
     width: 200px;
     height: auto;
-    /* box-shadow: 5px 10px #f78e69 ; */
     box-shadow: 5px 5px 8px #f78e69, 10px 10px 8px #a0ecd0, 15px 15px 8px   #f1bb87;
     font-family: 'Dancing Script', cursive;
-    
 }
 
 #cap{
     font-size: 20px;
     font-family: 'Dancing Script', cursive;
     color: #03045e;
-    
 }
+
 #user{
     font-size: 40px;
     font-family: 'Dancing Script', cursive;
@@ -115,10 +93,9 @@ img{
 
 #random-recipes{
     display: grid;
-    grid-template-columns: 300px 300px 300px 300px 200px;
-  grid-template-rows: auto;
- 
-  padding-top: 60px;
+    grid-template-columns: 300px 300px 300px 300px;
+    grid-template-rows: auto;
+    padding-top: 60px;
 }
 
 #random{
@@ -126,6 +103,7 @@ img{
     font-family: 'Dancing Script', cursive;
     color: #03045e;
 }
+
 #user2{
     font-size: 40px;
     font-family: 'Dancing Script', cursive;
@@ -134,10 +112,30 @@ img{
 }
 
 #randomRecipeImg {
-    width: 200px;
+    text-align: center;
+    width: 150px;
     height: auto;
-    /* box-shadow: 5px 10px #f78e69 ; */
     box-shadow: 5px 5px 8px #f78e69, 10px 10px 8px #a0ecd0, 15px 15px 8px   #f1bb87;
     font-family: 'Dancing Script', cursive;
-    
+}
+
+#recipe-list{
+    text-align: center;
+}
+
+#back-to-search{
+    align-items: center;
+    color: yellow;
+}
+
+
+
+
+
+
+
+@media (min-width: 1750px){
+    body{
+        background-color: #c7f9cc;
+    }
 }
