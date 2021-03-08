@@ -3,14 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="assets/favicon_io/android-chrome-512x512.png" type="image/x-icon">
-    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css"> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css" />
     <script src="random.js"></script>
     <script src="secret.js"></script>
-    <!-- <script src="index1.js"></script> -->
-    <!-- <script src="weather.js"></script> -->
+    <script src="index1.js"></script>
+    <script src="weather.js"></script>
     <title>Weather your Hunger</title>
 </head>
 <body>
@@ -18,18 +20,24 @@
         <div id= "random-facts-container">
             <p id = "random-facts"></p>
         </div>
-        <img src="assets/whiteOnTrans.GIF" alt="" style="height: 250px; width: auto;">
+        
     </div>
    <div id = "container">
+    <img id = "logo" src="assets/blackOnTrans.GIF" alt="" style="height: 400px; width: 400px;">
+   
        <form id ="search-form">
-           <h1>Search Recipes</h1>
-           <p>Search Recipes</p>
-            <input type="text" placeholder="recipes" id = "recipes">
+           <!-- <h1>Search Recipes</h1> -->
+           <div id = "search-padding">
+           <label for="res" id = "search-label">Search Recipes</label>
+            <input class="input is-rounded is-medium" name="res" type="text" placeholder="recipes" id = "recipes">
+        </div>
             <br>
             
             
 
-            <p> Search by diet preferences:</p>
+            <!-- <p> Search by diet preferences:</p> -->
+            <label id = "dropdown-label" for="diet">Diet Preferences</label>
+            <div  id = "dropDown" class="select is-rounded is-medium is-focused">
             <select name="diet" id="diet-options">
                 <option value="Vegetarian">Vegetarian</option>
                 <option value="Lacto-Vegetarian">Lacto-Vegetarian</option>
@@ -42,28 +50,33 @@
                 <option value="Ketogenic">Ketogenic</option>
                 <option value="Whole30">Whole30</option>
               </select>
+              </div>
               <br>
-            <input type="submit" value="find recipes">
+            <input id = "button" class="button is-primary is-large" type="submit" value="find recipes">
        </form>
        <div id = "weather" >
-        <div class="location">
+        <!-- <div id = "location" class="location"> -->
 			<h1 id= "h1">Finding your location...</h1>
-			<img id="img" />
-		</div>
-		<div class="temperature">
-			<div class="degree-section">
-				<h2 id="h2"></h2>
-				<span id="span"></span>
-			</div>
-			<div id="div"></div>
-		</div>        
+			<img id="img"/>
+		<!-- </div> -->
+		<!-- <div class="temperature"> -->
+			<!-- <div class="degree-section"> -->
+				<h2 id="h2" ></h2>
+				<span id="span" ></span>
+			<!-- </div> -->
+			<div id="div" ></div>
+		<!-- </div>         -->
     </div>
-       <div id = "random-recipes">
-           
-       </div>
+       
        <div id= "food-by-weather">
+           <p  id = "user">Recipe by weather</p>
            
        </div>
+
+       <div id = "random-recipes">
+        <p  id = "user2">Random recipes</p>
+    </div>
+
    </div>
    <div id= "recipe-list" style="display: none">
         <h2 id="recipe-title" >This works</h2> 
@@ -113,7 +126,6 @@
     <ul id = "similar-list"></ul>
 
 </div>
-
  
 <footer>
     <div>

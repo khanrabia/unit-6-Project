@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
     moreResults.addEventListener("click", similarRecipes, {once:true});
 
    
-    // randomRecipes()
+    randomRecipes()
 
     let backToRecipe = document.getElementById("back-to-recipe");
     backToRecipe.addEventListener("click", backRecipe, {once:true})
@@ -20,34 +20,33 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 // fetches the random recipes on the main page
-// function randomRecipes (){
-//     fetch(`https://api.spoonacular.com/recipes/random?apiKey=${spoonToken}&number=6`)
-//     .then(response => {
-//         return response.json();
-//     })
-//     .then(data => {
-//         displayRandomRecipe(data)
-//     })
-// }
+function randomRecipes (){
+    fetch(`https://api.spoonacular.com/recipes/random?apiKey=${spoonToken}&number=20`)
+    .then(response => {
+        return response.json();
+    })
+    .then(data => {
+        displayRandomRecipe(data)
+    })
+}
 
-//Displays the random recipes on the main page
-// function displayRandomRecipe(data){
+// Displays the random recipes on the main page
+function displayRandomRecipe(data){
 
-//     data.recipes.forEach(recipe =>{
-//         let randomRecipe  = document.getElementById("random-recipes");
-//         let randomImg = document.createElement('a');
-//         randomImg.target="_blank"
-//         randomImg.href = recipe.sourceUrl;
-//         randomImg.innerHTML = `<img  src = ${recipe.image}></img>`;
+    data.recipes.forEach(recipe =>{
+        let randomRecipe  = document.getElementById("random-recipes");
+        let randomImg = document.createElement('a');
+        randomImg.target="_blank"
+        randomImg.href = recipe.sourceUrl;
+        randomImg.innerHTML = `<img id="randomRecipeImg" src = ${recipe.image}> <br> <p id = "random">${recipe.title}</p></img>`;
         
-//         let randomTitle = document.createElement("h6");
-//         randomTitle.innerText = recipe.title;
-//         let randomSummary = document.createElement("p")
-//         randomSummary.innerHTML = recipe.summary;
+        // let randomTitle = document.createElement("h6");
+        // randomTitle.innerText = recipe.title;
+        
 
-//         randomRecipe.append(randomTitle,randomImg,randomSummary);
-//     })
-// }
+        randomRecipe.append(randomImg);
+    })
+}
 
 // fetches the recipe that user puts in the input box
 function callBack(e){
@@ -170,7 +169,7 @@ function displaySteps(recipe){
             ulOfSteps.append(li);
         });
         
-    }d
+    }
     
     
 }

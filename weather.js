@@ -1,5 +1,6 @@
 const api_KEY = key.weatherKey
-const spoonToken = key.recipeKey;
+spoonToken = key.recipeKey;
+console.log(spoonToken)
 // alert("This app requires access to your location to provide local weather data. Please enable your location to continue.")
 // document.querySelector(".degree-section").addEventListener("click", checkToggle);
 document.addEventListener("DOMContentLoaded", () => {
@@ -91,15 +92,14 @@ function convertTofahrenheit (celsius) {
 	  // Cold Temperatures fetch for hot drinks, deserts or soup
 	  if(weatherfahrenheit <= 50 || weather <= 10){
 	
-		const baseUrl = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${spoonToken}addRecipeInformation=true&query=`;
-
-const getSoup = () => fetch(baseUrl + "soup");
-const getCake = () => fetch(baseUrl + "cake");
-const getPie = () => fetch(baseUrl + "pie");
-
-
-  return Promise.all([getSoup(), getCake(), getPie()])
-    .then(responses => {
+		const baseUrl = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${spoonToken}&addRecipeInformation=true&query=`;
+		
+		const getSoup = () => fetch(baseUrl + "soup");
+		const getCake = () => fetch(baseUrl + "cake");
+		const getPie = () => fetch(baseUrl + "pie");
+		
+		return Promise.all([getSoup(), getCake(), getPie()])
+		.then(responses => {
       return Promise.all(
         responses.map(response => {
           return response.json();
@@ -117,63 +117,65 @@ const getPie = () => fetch(baseUrl + "pie");
   function hotWeatherFood(data) {
 	  //Hot Temperatures fetch for cold drinks, salads, or fruit
 		// let weatherfahrenheit = 60; // remove after testing
-	// 	let weather = data.data[0].temp;
+		let weather = data.data[0].temp;
 
-	// 	let weatherfahrenheit = convertTofahrenheit(weather)
-	//   if (weatherfahrenheit > 50 || weather > 10) {
-	// 	const baseUrl = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${spoonToken}&addRecipeInformation=true&query=`;
+		let weatherfahrenheit = convertTofahrenheit(weather)
+	  if (weatherfahrenheit > 50 || weather > 10) {
+		const baseUrl = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${spoonToken}&addRecipeInformation=true&query=`;
 
-	// 	const getSalad = () => fetch(baseUrl + "salad");
-	// 	const getRoll = () => fetch(baseUrl + "summerroll");
-	// 	const getCherry = () => fetch(baseUrl + "cherry");
-	// 	const getSlushie = () => fetch(baseUrl + "slushie");
-	// 	const getLemonade = () => fetch(baseUrl + "lemonade");
-	// 	const getCocktail = () => fetch(baseUrl + "cocktail");
+		const getSalad = () => fetch(baseUrl + "salad");
+		const getRoll = () => fetch(baseUrl + "summerroll");
+		const getCherry = () => fetch(baseUrl + "cherry");
+		const getSlushie = () => fetch(baseUrl + "slushie");
+		const getLemonade = () => fetch(baseUrl + "lemonade");
+		const getCocktail = () => fetch(baseUrl + "cocktail");
 		
-	// 	  return Promise.all([getSalad(), getRoll(), getCherry(),getSlushie(), getLemonade(), getCocktail()])
-	// 		.then(responses => {
-	// 		  return Promise.all(
-	// 			responses.map(response => {
-	// 			  return response.json();
-	// 			})
-	// 		  );
-	// 		})
-	// 		.then(data => {
-	// 			displayHotRecomendadtion(data)
-	// 		});
+		  return Promise.all([getSalad(), getRoll(), getCherry(),getSlushie(), getLemonade(), getCocktail()])
+			.then(responses => {
+			  return Promise.all(
+				responses.map(response => {
+				  return response.json();
+				})
+			  );
+			})
+			.then(data => {
+				displayHotRecomendadtion(data)
+			});
 				
-	//   }
+	  }
 }
 
 
 // display hot weather food on screen
 function displayHotRecomendadtion(data){
 
-	// data.forEach(item => {
-	// 	item.results.forEach(recipe =>{
-	// 		let displayHotFood = document.getElementById("food-by-weather");
-	// 		let hotFoodImg = document.createElement('a');
-	// 		hotFoodImg.target="_blank";
-	// 		hotFoodImg.href = recipe.sourceUrl;
-	// 		hotFoodImg.innerHTML = `<img  src = ${recipe.image}></img>`;
-	// 		let hotFoodTitle = document.createElement("h7");
-	// 		hotFoodTitle.innerText = recipe.title;
-	// 		displayHotFood.append(hotFoodTitle,hotFoodImg);
-	// 	});
-	// });
+	data.forEach(item => {
+		item.results.forEach(recipe =>{
+			let displayHotFood = document.getElementById("food-by-weather");
+			let hotFoodImg = document.createElement('a');
+			hotFoodImg.target="_blank";
+			hotFoodImg.href = recipe.sourceUrl;
+			hotFoodImg.innerHTML = `<img id="recommendImg" src = ${recipe.image}><br> <p id = "cap">${recipe.title}</p></img>`;
+			// let hotFoodTitle = document.createElement("caption");
+			// hotFoodTitle.innerText = recipe.title;
+			displayHotFood.append(hotFoodImg);
+		});
+	});
 }
 
 // display cold weather food on screen
 function displayColdRecommendation(data) {
 	console.log(data)
-	// data.recipes.forEach(recipe =>{
-	// 	let displayColdFood = document.getElementById("food-by-weather");
-	// 	let coldFoodImg = document.createElement('a');
-	// 	coldFoodImg.target="_blank"
-	// 	coldFoodImg.href = recipe.sourceUrl;
-	// 	coldFoodImg.innerHTML = `<img  src = ${recipe.image}></img>`;
-	// 	let coldFoodTitle = document.createElement("h8");
-	// 	coldFoodTitle.innerText = recipe.title;
-	// 	displayColdFood.append(coldFoodTitle,coldFoodImg);
-	// });
+	data.forEach(item =>{
+		item.results.forEach(recipe => {
+			let displayColdFood = document.getElementById("food-by-weather");
+		let coldFoodImg = document.createElement('a');
+		coldFoodImg.target="_blank"
+		coldFoodImg.href = recipe.sourceUrl;
+		coldFoodImg.innerHTML = `<img id="recommendImg" src = ${recipe.image}> <br><p id = "cap">${recipe.title}</p></img>`;
+		// let coldFoodTitle = document.createElement("caption");
+		// coldFoodTitle.innerText = recipe.title;
+		displayColdFood.append(coldFoodImg);
+	});
+	});
   }
