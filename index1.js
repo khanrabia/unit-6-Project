@@ -1,6 +1,6 @@
 const key = {
     weatherKey : "13517a41ef6a4b6e8d6de306f19caa92",
-    recipeKey : "3e9ad682114240ea8d99079e32ee524e"
+    recipeKey : "8ceb1418dad148a7b63bb42a43833b3a"
 }
 
 let spoonToken = key.recipeKey;
@@ -12,39 +12,42 @@ document.addEventListener("DOMContentLoaded", () => {
     let moreResults = document.getElementById("more-results");
     moreResults.addEventListener("click", similarRecipes, {once:true});
     
-    // randomRecipes();
+    randomRecipes();
     
     let backToRecipe = document.getElementById("back-to-recipe");
     backToRecipe.addEventListener("click", backRecipe, {once:true});
     
     let backToSearch = document.getElementById("back-to-search");
     backToSearch.addEventListener('click', backSearch);
+
+    displayRecipeListRandomFact();
+    
 })
 
 // fetches the random recipes on the main page
-// function randomRecipes (){
-//     fetch(`https://api.spoonacular.com/recipes/random?apiKey=${spoonToken}&number=20`)
-//     .then(response => {
-//         return response.json();
-//     })
-//     .then(data => {
-//         displayRandomRecipe(data);
-//     })
-// }
+function randomRecipes (){
+    fetch(`https://api.spoonacular.com/recipes/random?apiKey=${spoonToken}&number=20`)
+    .then(response => {
+        return response.json();
+    })
+    .then(data => {
+        displayRandomRecipe(data);
+    })
+}
 
 // Displays the random recipes on the main page
-// function displayRandomRecipe(data){
-//     data.recipes.forEach(recipe =>{
-//         let randomRecipe  = document.getElementById("random-recipes");
-//         let randomImg = document.createElement('a');
+function displayRandomRecipe(data){
+    data.recipes.forEach(recipe =>{
+        let randomRecipe  = document.getElementById("random-recipes");
+        let randomImg = document.createElement('a');
         
-//         randomImg.target="_blank";
-//         randomImg.href = recipe.sourceUrl;
-//         randomImg.innerHTML = `<img id="randomRecipeImg" src = ${recipe.image}> <br> <p id = "random">${recipe.title}</p></img>`;
+        randomImg.target="_blank";
+        randomImg.href = recipe.sourceUrl;
+        randomImg.innerHTML = `<img id="randomRecipeImg" src = ${recipe.image}> <br> <p id = "random">${recipe.title}</p></img>`;
         
-//         randomRecipe.append(randomImg);
-//     });
-// }
+        randomRecipe.append(randomImg);
+    });
+}
 
 // fetches the recipe that user puts in the input box
 function callBack(e){
@@ -52,6 +55,9 @@ function callBack(e){
     let container = document.getElementById("container");
     let diet = document.getElementById("diet-options").value;
     let recipes = document.getElementById("recipes").value;
+
+    let form = document.getElementById("search-form");
+    form.reset();
     
     container.style.display = "none";
     
@@ -63,6 +69,10 @@ function callBack(e){
     fetch(`https://api.spoonacular.com/recipes/complexSearch?query=${recipes}&diet=${diet}&addRecipeNutrition=true&apiKey=${spoonToken}&addRecipeInformation=true&instructionsRequired=true&number=10`, options)
     .then(res => res.json())
     .then(data => {
+        // let ul = document.getElementById("list");
+        // if(ul.length === 0) {
+        //     console.log("empty")
+        // }
         displayRecipe(data);
     })
 }
@@ -74,8 +84,13 @@ function displayRecipe(data){
     let recipeTitle = document.getElementById("recipe-title");
     let ul = document.getElementById("list");
     
+    let secondPageLogo = document.getElementById('logo2');
+    recipeList.append(secondPageLogo, recipeTitle, ul)
+
     recipeList.style.display = "block";
     recipeTitle.innerText = `Here are a few ${recipes} recipes`;
+
+    
     
     data.results.forEach(recipe => {
         let li = document.createElement("li");
@@ -84,6 +99,8 @@ function displayRecipe(data){
         
         //hides the recipe list & displays the recipe instructions, picture & info
         li.addEventListener('click', () =>{
+            
+           
             let recipeList = document.getElementById("recipe-list");
             recipeList.style.display = "none";
             
@@ -93,20 +110,67 @@ function displayRecipe(data){
             let singleRecipe = document.getElementById("all-things-of-single-recipe");
             singleRecipe.style.display = "block";
             
-            let img = document.getElementById("img");
+            let img = document.getElementById("img1");
             img.src = recipe.image;
             
             extraInformation(recipe);
             displayNutrientsFacts(recipe);
             displayIngredients(recipe);
             displaySteps(recipe);
+            displaySingleRecipeRandomFacts();
+            
         });
+        
     });
     
     let backToSearch = document.getElementById("back-to-search");
     backToSearch.style.display = "block";
+    recipeList.append(backToSearch);
+
+
+
+    
+   
+}
+function displaySingleRecipeRandomFacts() {
+    fetch(`http://localhost:3000/facts`)
+    .then(response => {
+        return response.json();
+    })
+    .then(data => {
+        displaySingleRecipeFacts(data);
+    })
+}
+function displaySingleRecipeFacts(data){
+    let pTag = document.getElementById("single-recipe-list-random-facts");
+    
+    setInterval(function(){
+        let number = Math.floor(Math.random() * 20);
+        for(let i = 0; i < number; i++){
+            pTag.innerText = data[number].fact;
+        }
+    }, 5000);
 }
 
+function displayRecipeListRandomFact() {
+    fetch(`http://localhost:3000/facts`)
+    .then(response => {
+        return response.json();
+    })
+    .then(data => {
+        displayRecipeListFacts(data);
+    })
+}
+function displayRecipeListFacts(data){
+    let pTag = document.getElementById("recipe-list-random-facts");
+    
+    setInterval(function(){
+        let number = Math.floor(Math.random() * 20);
+        for(let i = 0; i < number; i++){
+            pTag.innerText = data[number].fact;
+        }
+    }, 5000);
+}
 // extra information
 function extraInformation (recipe){
     let cusine = document. getElementById("cusine");
@@ -115,11 +179,11 @@ function extraInformation (recipe){
     let servingSize = document. getElementById("serving-size");
     let weightPerServing = document. getElementById("weightPerServing");
     
-    cusine.innerText = `Cusine: ${recipe.cuisines[0]}`;
-    prepTime.innerText = `Prep-Time: ${recipe.readyInMinutes}`;
-    servingSize.innerText = `Serving size: ${recipe.servings}`;
-    sourceName.innerText = `Source: ${recipe.sourceName}`;
-    weightPerServing.innerText = `Weight per serving: ${recipe.nutrition.weightPerServing.amount} ${recipe.nutrition.weightPerServing.unit} `;
+    cusine.innerHTML = `<b>Cusine:</b> ${recipe.cuisines[0]}`;
+    prepTime.innerHTML = `<b>Prep-Time: </b>${recipe.readyInMinutes}`;
+    servingSize.innerHTML = `<b>Serving size: </b>${recipe.servings}`;
+    sourceName.innerHTML = `<b>Source:</b> ${recipe.sourceName}`;
+    weightPerServing.innerHTML = `<b>Weight per serving:</b> ${recipe.nutrition.weightPerServing.amount} ${recipe.nutrition.weightPerServing.unit} `;
 }
 
 // nutritions facts for recipe
@@ -129,9 +193,9 @@ function displayNutrientsFacts(recipe){
     let fat = document.getElementById("fat");
     let protein = document.getElementById("protein");
     
-    carbs.innerText = `Carbs: ${recipe.nutrition.caloricBreakdown.percentCarbs}`;
-    fat.innerText = `Fat: ${recipe.nutrition.caloricBreakdown.percentFat}`;
-    protein.innerText = `Protein: ${recipe.nutrition.caloricBreakdown.percentProtein}`;
+    carbs.innerHTML = `<b>Carbs:</b> ${recipe.nutrition.caloricBreakdown.percentCarbs}`;
+    fat.innerHTML = `<b>Fat: </b>${recipe.nutrition.caloricBreakdown.percentFat}`;
+    protein.innerHTML = `<b>Protein:</b> ${recipe.nutrition.caloricBreakdown.percentProtein}`;
     nutritionSection.style.display = "block";
 }
 
@@ -145,7 +209,7 @@ function displayIngredients(recipe){
     recipe.nutrition.ingredients.forEach(ingredient => {
         let li = document.createElement("li");
         
-        li.innerText = `${ingredient["name"]} ${ingredient["amount"]} ${ingredient["unit"]}`;
+        li.innerText = `- ${ingredient["name"]} ${ingredient["amount"]} ${ingredient["unit"]}`;
         ulOfIngredients.append(li);
     });
 }
@@ -164,7 +228,7 @@ function displaySteps(recipe){
     recipe.analyzedInstructions[0].steps.forEach(step => {
         let li = document.createElement("li");
         
-        li.innerText = step["step"];
+        li.innerText = `- ${step["step"]}`;
         ulOfSteps.append(li);
     });
     
@@ -175,6 +239,12 @@ function displaySteps(recipe){
             ulOfSteps.append(li);
         });
     }
+    let moreResults = document.getElementById("more-results");
+    moreResults.style.display = "block";
+    
+    let backToSearch = document.getElementById("back-to-search");
+    backToSearch.style.display = "block";
+    steps.append(backToSearch, moreResults);
 }
 
 //Get Similar Recipes
@@ -207,12 +277,33 @@ function displaySimilarRecipe(data){
     data.forEach(recipe => {
         let li = document.createElement("li");
         
-        li.innerHTML = `<a target="_blank" href = ${recipe.sourceUrl}>${recipe.title}</a>`;
+        li.innerHTML = `- <a target="_blank" href = ${recipe.sourceUrl}>${recipe.title}</a>`;
         ul.append(li);
     });
     
     let backToSearch = document.getElementById("back-to-search");
     backToSearch.style.display = "block";
+    displaySimiliarRecipeRandomFacts();
+    recipeList.append(backToSearch, backToRecipe);
+}
+function displaySimiliarRecipeRandomFacts() {
+    fetch(`http://localhost:3000/facts`)
+    .then(response => {
+        return response.json();
+    })
+    .then(data => {
+        displaySimiliarRecipeFacts(data);
+    })
+}
+function displaySimiliarRecipeFacts(data){
+    let pTag = document.getElementById("similar-recipe-list-random-facts");
+    
+    setInterval(function(){
+        let number = Math.floor(Math.random() * 20);
+        for(let i = 0; i < number; i++){
+            pTag.innerText = data[number].fact;
+        }
+    }, 5000);
 }
 
 function backRecipe (){

@@ -9,10 +9,10 @@
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="style.css" />
-        <!-- <script src="random.js"></script> -->
+        <script src="random.js"></script>
         <!-- <script src="secret.js"></script> -->
         <script src="index1.js"></script>
-        <!-- <script src="weather.js"></script> -->
+        <script src="weather.js"></script>
         <title>Weather your Hunger</title>
     </head>
     <body>
@@ -23,7 +23,7 @@
                 </div>
             </div>
             
-            <img id = "logo" src="assets/blackOnTrans.GIF" alt="" style="height: 400px; width: 400px;">
+            <img id = "logo" src="assets/blackOnTrans.GIF" alt="" style="height: 300px; width: 300px;">
             
             <form id ="search-form">
                 <div id = "search-padding">
@@ -49,7 +49,7 @@
                 </div>
                 <br>
                 
-                <input id = "button" class="button is-primary is-large" type="submit" value="find recipes">
+                <input id = "button" class="button is-primary is-large" type="submit" value="🍳">
             </form>
             
             <div id = "weather" >
@@ -60,6 +60,7 @@
                 <div id="div" ></div>
             </div>
             
+            
             <div id= "food-by-weather">
                 <p  id = "user">Recipe by weather</p>
             </div>
@@ -69,59 +70,78 @@
             </div>
         </div>
 
-        <div class="box $box-padding: 100px" id= "recipe-list" style="display: none">
-            <div id= "random-facts-container">
-                <p id = "random-facts"></p>
+        <div id= "recipe-list" style="display: none">
+            
+            <div id= "recipe-list-random-facts-container">
+                <p id = "recipe-list-random-facts"></p>
+                
             </div>
+            <img id = "logo2" src="assets/blackOnTrans.GIF" alt="" style="height: 150px; width: 200px;">
             
             <h2 id="recipe-title" >This works</h2> 
             <ul id = "list"></ul>
         </div>
         
         <div id = "all-things-of-single-recipe" style="display: none">
+            <div id= "single-recipe-list-random-facts-container">
+                <p id = "single-recipe-list-random-facts"></p>
+                
+            </div>
+            
             <div id= "single-recipe" >
-                <h3 id="single-recipe-title" >This </h2> 
-                    <img id="img">
-                    <p id="prep-time">Prep-time: </p>
-                    <p id="serving-size">serving size: </p>
-                    <p id="cusine">Cusine: </p>
-                    <p id="sourceName">sourceName: </p>
-                    <p id="weightPerServing">Portion Size: </p>
+                <img id = "logo3" src="assets/blackOnTrans.GIF" alt="" style="height: 150px; width: 200px;">
+                <h3 id="single-recipe-title" >This </h3> 
+                    <img id="img1">
+                    <div  class="columns ">
+                    <div id = "extra" class="column is-half"> 
+                        <p id="prep-time" ><b>Prep-time:</b> </p>
+                        <p id="serving-size"><b>serving size:</b> </p>
+                        <p id="cusine">Cusine: </p>
+                        <p id="sourceName">sourceName: </p>
+                        <p id="weightPerServing">Portion Size: </p>
+                    </div>
                     
-                    <div id = "nutrition-section">
-                        <h4 id="Nutrition">Nutrition: </h4>
+                    <div id = "nutrition-section" class="column is-half">
+                        <h4 id="Nutrition"><b>Nutrition:</b> </h4>
                         <p id="carbs">Carbs: </p>
                         <p id="fat">Fat: </p>
                         <p id="protein">Protein: </p>
                     </div>
-                    <div id = "ingreidents">
-                        <p>Ingreidents:</p>
+                </div>
+                    <div id = "ingreidents" >
+                        <p><b>Ingredients:</b></p>
                         <ul id = "list-of-ingredients"></ul>
                     </div>
                     
                     <div id = "steps">
-                        <p>steps:</p>
+                        <p><b>Instructions:</b></p>
                         <ul id = "list-of-steps"></ul>
                     </div>
                     
                     <div>
-                        <button id = "more-results" >Similar Recipes</button>
+                        <button id = "more-results"  class="button is-primary is-medium" >Similar Recipes</button>
                     </div>
                 </div>
             </div>
             
-            <div id = "similar-recipes" style="display: none">
-                <h5 id  = "head-of-similar-recipes"></h5>
+            <div id = "similar-recipes" style="display: none; width: 1500px">
+                <div id= "similar-recipe-list-random-facts-container">
+                    <p id = "similar-recipe-list-random-facts"></p>
+                </div>
+                
+                <img id = "logo4" src="assets/blackOnTrans.GIF" alt="" style="height: 150px; width: 200px;">
+
+                <h5 id  = "head-of-similar-recipes"> Similar Results to your search</h5>
                 <ul id = "similar-list"></ul>
             </div>
             
             <footer>
                 <div>
-                    <button id = "back-to-recipe" style="display: none">Back To Recipes</button>
+                    <button class="button is-large  is-primary is-rounded " id = "back-to-recipe" style="display: none">Back To Recipes List</button>
                 </div>
                 
                 <div>
-                    <button id = "back-to-search" style="display: none">Back To Search</button>
+                    <button class="button is-large  is-primary is-rounded " id = "back-to-search" style="display: none">⬅</button>
                 </div>
             </footer>
         </body>

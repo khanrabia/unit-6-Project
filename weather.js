@@ -1,9 +1,13 @@
+// let key = {
+//     weatherKey : "13517a41ef6a4b6e8d6de306f19caa92",
+//     recipeKey : "8ceb1418dad148a7b63bb42a43833b3a"
+// }
 const api_KEY = key.weatherKey;
 spoonToken = key.recipeKey;
 
 document.addEventListener("DOMContentLoaded", () => {
 	checkIfUserProvidesLocation();
-	document.querySelector(".degree-section").addEventListener("click", checkToggle);
+	document.querySelector("span").addEventListener("click", checkToggle);
 });
 
 function checkIfUserProvidesLocation() {

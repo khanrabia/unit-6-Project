@@ -1,7 +1,7 @@
-const key = {
-    weatherKey : "13517a41ef6a4b6e8d6de306f19caa92",
-    recipeKey : "3e9ad682114240ea8d99079e32ee524e"
-}
+// const key = {
+//     weatherKey : "13517a41ef6a4b6e8d6de306f19caa92",
+//     recipeKey : "3e9ad682114240ea8d99079e32ee524e"
+// }
 
 document.addEventListener("DOMContentLoaded", () => {
     displayRandomFact();
